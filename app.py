@@ -46,14 +46,20 @@ def home():
 @app.route('/predict', methods=['GET','POST'])
 def predict():
     if request.method == 'POST':
-        message = request.form['news']
+        message = request.form['news'].strip()  # remove leading/trailing whitespace
+        if not message:
+            return render_template("prediction.html", prediction_text="Please enter some text to analyze.")
+        # Check for minimum word count (e.g., 5 words)
+        if len(message.split()) < 5:
+            return render_template("prediction.html", prediction_text="Please explain briefly")
+
         pred = fake_news_det(message)
         print(pred)
         def predi(pred):
             if pred[0] == 1:
-              res="Prediction of the News :  Looking Fake News📰"
+              res="Prediction of the Information :  Looking like <b>False<\b> Information"
             else:
-              res="Prediction of the News : Looking Real News📰 "
+              res="Prediction of the Information : Looking like <b>True<\b> Information"
             return res
         result=predi(pred)
         return render_template("prediction.html",  prediction_text="{}".format(result))
@@ -63,4 +69,4 @@ def predict():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
