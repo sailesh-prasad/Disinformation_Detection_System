@@ -101,3 +101,10 @@ To run this project locally:
    ```
 
 Access the application in your web browser by navigating to `http://localhost:5000`.
+
+## Project Contributors
+
+- **Prasanna Raghav R** (820421104046)  
+- **Ridhan Kishore R** (820421104053)  
+- **Sai Krishnan T S** (820421104058)  
+- **Sailesh Prasad R S** (820421104059)
